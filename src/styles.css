@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.ww-notes {
+  color: red;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 2em;
+  width: 300px;
+  margin: auto;
+}
