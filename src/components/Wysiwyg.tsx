@@ -55,6 +55,7 @@ const elementMouseTracker = (element: HTMLElement | null, image: HTMLElement | n
 			// TODO: think how to get the left and top positions of the image
 			const getComputedStyle = () => window.getComputedStyle(image);
 			console.log("<style> top:", getComputedStyle().top);
+			console.log("<style> left:", getComputedStyle().left);
 		};
 
 		element.onmousemove = (event) => {
@@ -81,9 +82,9 @@ const WYSIWYG: React.FC = () => {
 
 	const getComputedStyle = () => window.getComputedStyle(image.current!);
 
-	useEffect(() => {
-		console.log(getComputedStyle().top);
-	}, [image]);
+	// useEffect(() => {
+	// 	console.log(getComputedStyle().top);
+	// }, [image]);
 
 	useEffect(() => {
 		elementMouseTracker(frame.current, image.current);
