@@ -33,7 +33,7 @@ export default function App() {
 				<br />
 				3. <span style={{ color: "red" }}>Make an early HTML export,</span>
 				<br />
-				4. Make SCALE & CROP,
+				4. Make SCALE & CROP & ZOOM,
 				<br />
 				5. Make preset positioning with CTRL, SHIFT, NUMERIC KEYBOARD
 			</p>
