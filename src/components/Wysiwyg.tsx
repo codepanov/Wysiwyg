@@ -45,91 +45,7 @@ const Text = styled("span")`
 	left: 150px;
 `;
 
-// * This is the first version of the mouse tracker, which is working, but it only moves the image when the mouse is anywhere in the frame
-// // TODO: mouse tracker should be used to move any element which comes as a parameter
-// const elementMouseTracker = (frame: HTMLElement | null, image: HTMLElement | null) => {
-// 	if (frame && image) {
-// 		let isDragging = false;
-// 		let initialX = 0;
-// 		let initialY = 0;
-
-// 		frame.onmousedown = (event) => {
-// 			isDragging = true;
-
-// hardcoded values for now, because it is a half of the frame size
-// 			initialX = event.clientX - parseFloat(image.style.left || "250");
-// 			initialY = event.clientY - parseFloat(image.style.top || "125");
-// 		};
-
-// 		frame.onmouseup = () => {
-// 			isDragging = false;
-
-// this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
-// 			const getComputedStyle = () => window.getComputedStyle(image);
-// 			console.log("<style> top:", getComputedStyle().top);
-// 			console.log("<style> left:", getComputedStyle().left);
-// 		};
-// 		frame.onmousemove = (event) => {
-// 			if (isDragging) {
-// 				const newX = event.clientX - initialX;
-// 				const newY = event.clientY - initialY;
-
-// 				image.style.left = newX + "px";
-// 				image.style.top = newY + "px";
-// 			}
-// 		};
-
-// 		frame.onmouseout = () => {
-//		// TODO: Maybe do a click event or kill all events... I'll think
-// 			isDragging = false;
-//    // TODO: Reset any ongoing transformations here
-// 		};
-// 	}
-// };
-
-// * This is the second version of the mouse tracker, which is working, but it only moves the image when the mouse is over the image
-// // ! testing this version of moving the image, only when mouse is on the image
-// const elementMouseTracker = (frame: HTMLElement | null, image: HTMLElement | null) => {
-// 	if (frame && image) {
-// 		let isDragging = false;
-// 		let initialX = 0;
-// 		let initialY = 0;
-
-// 		image.onmousedown = (event) => {
-// 			isDragging = true;
-
-// 			// Calculate the initial position relative to the image
-// 			initialX = event.clientX - image.offsetLeft;
-// 			initialY = event.clientY - image.offsetTop;
-// 		};
-
-// 		document.onmouseup = () => {
-// 			isDragging = false;
-
-// 			// this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
-// 			const getComputedStyle = () => window.getComputedStyle(image);
-// 			console.log("<style> top:", getComputedStyle().top);
-// 			console.log("<style> left:", getComputedStyle().left);
-// 		};
-
-// 		document.onmousemove = (event) => {
-// 			if (isDragging) {
-// 				const newX = event.clientX - initialX;
-// 				const newY = event.clientY - initialY;
-
-// 				// Update the image position
-// 				image.style.left = newX + "px";
-// 				image.style.top = newY + "px";
-// 			}
-// 		};
-
-// 		image.onmouseout = () => {
-// 			isDragging = false;
-// 		};
-// 	}
-// };
-
-const elementMouseTracker = (frame: HTMLElement | null) => {
+const handleElementDrag = (frame: HTMLElement | null) => {
 	if (frame) {
 		let isDragging = false;
 		let initialX = 0;
@@ -174,7 +90,7 @@ const elementMouseTracker = (frame: HTMLElement | null) => {
 };
 
 // TODO: Think where to put this. It was in the onmouseup event, but now "image" doesn't exist there
-// this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
+// // this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
 // const getComputedStyle = () => window.getComputedStyle(image);
 // console.log("<style> top:", getComputedStyle().top);
 // console.log("<style> left:", getComputedStyle().left);
@@ -200,8 +116,7 @@ const WYSIWYG: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		// elementMouseTracker(frame.current, image.current);
-		elementMouseTracker(frame.current);
+		handleElementDrag(frame.current);
 	}, []);
 
 	return (
