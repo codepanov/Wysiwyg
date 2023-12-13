@@ -37,12 +37,20 @@ const Image = styled("div")<ImageProps>`
 	transform: translate(-50%, -50%);
 	top: 50%;
 	left: 50%;
+	cursor: grab;
+	&:active {
+		cursor: grabbing; /* Cursor style when clicked */
+	}
 `;
 
 const Text = styled("span")`
 	position: absolute;
 	top: 20px;
 	left: 150px;
+	cursor: grab;
+	&:active {
+		cursor: grabbing; /* Cursor style when clicked */
+	}
 `;
 
 const handleElementDrag = (frame: HTMLElement | null) => {
