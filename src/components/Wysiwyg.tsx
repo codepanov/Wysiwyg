@@ -79,7 +79,18 @@ const handleElementDrag = (frame: HTMLElement | null) => {
 
 		document.onmouseup = () => {
 			isDragging = false;
+
+			// capture the dragged element before it is set to null
+			const draggedElement = currentElement;
+
 			currentElement = null;
+
+			// this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
+			if (draggedElement) {
+				const getComputedStyle = () => window.getComputedStyle(draggedElement);
+				console.log("<style> top:", getComputedStyle().top);
+				console.log("<style> left:", getComputedStyle().left);
+			}
 		};
 
 		document.onmousemove = (event) => {
@@ -99,12 +110,6 @@ const handleElementDrag = (frame: HTMLElement | null) => {
 		};
 	}
 };
-
-// TODO: Think where to put this. It was in the onmouseup event, but now "image" doesn't exist there
-// // this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
-// const getComputedStyle = () => window.getComputedStyle(image);
-// console.log("<style> top:", getComputedStyle().top);
-// console.log("<style> left:", getComputedStyle().left);
 
 const WYSIWYG: React.FC = () => {
 	const frame = useRef(null);
