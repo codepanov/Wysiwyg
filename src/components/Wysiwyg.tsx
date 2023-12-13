@@ -51,8 +51,8 @@ const Image = styled("div")<ImageProps>`
 
 const Text = styled("span")`
 	position: absolute;
-	top: 20px;
-	left: 150px;
+	transform: translateX(-50%);
+	left: 50%;
 	user-select: none;
 `;
 
