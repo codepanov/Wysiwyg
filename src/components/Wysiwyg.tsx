@@ -20,15 +20,8 @@ const Frame = styled("div")`
 	overflow: hidden;
 `;
 
-// const IMAGE_URL =
-// 	"https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG9ubGluZXxlbnwwfHwwfHx8MA%3D%3D";
-
 // ! testing imageDimensions
 const IMAGE_URL = "https://placehold.co/150";
-
-// imageDimensions(IMAGE_URL).then((dimensions) => {
-// 	console.log(dimensions.width);
-// });
 
 // TODO: Enable imageUrl to be passed as a prop
 const Image = styled("div")<ImageProps>`
@@ -38,8 +31,6 @@ const Image = styled("div")<ImageProps>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	/* width: 299px;
-	height: 200px; */
 	width: ${(props) => props.width}px;
 	height: ${(props) => props.height}px;
 	position: absolute;
@@ -63,12 +54,16 @@ const elementMouseTracker = (frame: HTMLElement | null, image: HTMLElement | nul
 
 		frame.onmousedown = (event) => {
 			isDragging = true;
+
+			// hardcoded values for now, because it is a half of the frame size
 			initialX = event.clientX - parseFloat(image.style.left || "250");
 			initialY = event.clientY - parseFloat(image.style.top || "125");
 		};
 
 		frame.onmouseup = () => {
 			isDragging = false;
+
+			// this will return the position but with added 50% of the size of the image due to the transform: translate(-50%, -50%) in the styles
 			const getComputedStyle = () => window.getComputedStyle(image);
 			console.log("<style> top:", getComputedStyle().top);
 			console.log("<style> left:", getComputedStyle().left);
@@ -100,7 +95,7 @@ const WYSIWYG: React.FC = () => {
 		height: 0,
 	});
 
-	const getComputedStyle = () => window.getComputedStyle(image.current!);
+	// const getComputedStyle = () => window.getComputedStyle(image.current!);
 
 	// useEffect(() => {
 	// 	console.log(getComputedStyle().top);
