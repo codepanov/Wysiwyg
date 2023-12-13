@@ -14,14 +14,7 @@ export default function App() {
 				Or <button>Register</button> and get 30 min & export
 			</h3>
 			<h4>Export to HTML or image</h4>
-			<p>? Register with mail, or phone ?</p>
-			<ul className="ww-notes">
-				<li>Slika se pomera po ekranu slobodno (mouse track)</li>
-				<li>Zoom</li>
-				<li>Crop</li>
-				<li>Text preko slike</li>
-				<li>Realtime preview HTML export-a</li>
-			</ul>
+			<p>Register with mail, or phone, or both?</p>
 			<WYSIWYG />
 			<button onClick={ExportHTML}>Export?</button>
 			<p>
@@ -33,7 +26,7 @@ export default function App() {
 				<br />
 				3. <span style={{ color: "red" }}>Make an early HTML export,</span>
 				<br />
-				4. Make SCALE & CROP & ZOOM,
+				4. Make SCALE, CROP, ROTATE & PERSPECTIVE,
 				<br />
 				5. Make preset positioning with CTRL, SHIFT, NUMERIC KEYBOARD
 			</p>
