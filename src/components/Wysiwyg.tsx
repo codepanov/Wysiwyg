@@ -1,7 +1,7 @@
 /** @format */
 
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { imageDimensions } from "../utils/imageDimensions";
 
 interface ImageProps {
@@ -9,6 +9,17 @@ interface ImageProps {
 	height: number;
 	imageUrl?: string;
 }
+
+// adding .no-global-styles to a child element in the "frame" will not apply the global-class styles
+const GlobalStyles = createGlobalStyle`
+  .global-class :not(.no-global-styles) {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+`;
 
 const Frame = styled("div")`
 	border: 1px solid red;
@@ -20,7 +31,6 @@ const Frame = styled("div")`
 	overflow: hidden;
 `;
 
-// ! testing imageDimensions
 const IMAGE_URL = "https://placehold.co/150";
 
 // TODO: Enable imageUrl to be passed as a prop
@@ -37,20 +47,13 @@ const Image = styled("div")<ImageProps>`
 	transform: translate(-50%, -50%);
 	top: 50%;
 	left: 50%;
-	cursor: grab;
-	&:active {
-		cursor: grabbing; /* Cursor style when clicked */
-	}
 `;
 
 const Text = styled("span")`
 	position: absolute;
 	top: 20px;
 	left: 150px;
-	cursor: grab;
-	&:active {
-		cursor: grabbing; /* Cursor style when clicked */
-	}
+	user-select: none;
 `;
 
 const handleElementDrag = (frame: HTMLElement | null) => {
@@ -129,7 +132,11 @@ const WYSIWYG: React.FC = () => {
 
 	return (
 		<>
-			<Frame ref={frame}>
+			<GlobalStyles />
+			<Frame
+				ref={frame}
+				className="global-class"
+			>
 				<Image
 					ref={image}
 					width={imageDimensionsState.width}
