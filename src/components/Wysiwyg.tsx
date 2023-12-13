@@ -77,6 +77,7 @@ const handleElementDrag = (frame: HTMLElement | null) => {
 			}
 		};
 
+		// TODO: We will not use this getComputedStyle in this way, it is just for testing purposes. It should go over all elements and get the computed style for each one
 		document.onmouseup = () => {
 			isDragging = false;
 
